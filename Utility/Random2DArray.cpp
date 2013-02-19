@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <assert.h>
 #include <list>
+#include <algorithm>
 
 namespace util {
     // Generate reandom
@@ -41,6 +42,16 @@ namespace util {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 t[i][j] = (std::rand() % all) + 1;
+            }
+        }
+    }
+    
+    template<class T> void getRandMatrix(T **t, int rows, int cols, T min, T max){
+        T diff = std::abs(max - min)+1;
+        std::srand(static_cast<unsigned int>(std::time(0)));
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                t[i][j] = (std::rand() % diff) + min;
             }
         }
     }
