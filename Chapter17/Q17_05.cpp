@@ -27,6 +27,7 @@ int getCode(char code){
     }
 }
 
+// if any answer contains invalidate color, will return false
 bool getHit(std::string const guess, std::string const solution, int &hit, int &psudoHit){
     hit = 0;
     psudoHit = 0;
