@@ -5,6 +5,9 @@
 //  Created by Binlong Li on 2/4/13.
 //  Copyright (c) 2013 Binlong Li. All rights reserved.
 //
+#ifndef __TestCPPCode__RANDOM2DARRAY__
+#define __TestCPPCode__RANDOM2DARRAY__
+
 #include <iostream>
 #include <cstdlib>
 #include <cstdlib>
@@ -94,3 +97,5 @@ namespace util {
         std::cout << std::endl;
     }
 }
+
+#endif

@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Binlong Li. All rights reserved.
 //
 
+#ifndef __TestCPPCode__DOUBLELINKLIST_SHAREDPOINTER__
+#define __TestCPPCode__DOUBLELINKLIST_SHAREDPOINTER__
+
 #include <iostream>
 #include <memory>
 #include "Random2DArray.cpp"
@@ -17,9 +20,6 @@ namespace util {
         // method section
         inline Node(T d){
             data = d;
-        }
-        ~Node(void){
-            std::cout << "Node::~Node" << std::endl;
         }
         // Data Section
         T data;
@@ -120,6 +120,7 @@ namespace util {
         return tmp;
     }
 }
+#endif
 
 //int main(){
 //    std::shared_ptr<DoubleLinkList<int> > dl (new DoubleLinkList<int>);

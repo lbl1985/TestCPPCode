@@ -5,8 +5,11 @@
 //  Created by Binlong Li on 2/5/13.
 //  Copyright (c) 2013 Binlong Li. All rights reserved.
 //
+#ifndef __TestCPPCode__DOUBLELINKLIST__
+#define __TestCPPCode__DOUBLELINKLIST__
 
 #include <iostream>
+#include "Random2DArray.cpp"
 
 template <class T>
 class Node {
@@ -89,3 +92,4 @@ private:
     Node<T> *front;
     Node<T> *back;
 };
+#endif

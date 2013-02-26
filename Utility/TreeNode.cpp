@@ -5,6 +5,8 @@
 //  Created by Binlong Li on 2/5/13.
 //  Copyright (c) 2013 Binlong Li. All rights reserved.
 //
+#ifndef __TestCPPCode__TREENODE__
+#define __TestCPPCode__TREENODE__
 
 #include <iostream>
 #include <list>
@@ -135,7 +137,7 @@ namespace util {
         std::cout << std::endl;
     }
 }
-
+#endif
 
 // Testing main function
 //int main(){
