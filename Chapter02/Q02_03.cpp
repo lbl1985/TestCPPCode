@@ -9,10 +9,14 @@
 #include "../Utility/DoubleLinkList_sharedPointer.cpp"
 
 template <class T>
-void deleteNode(std::shared_ptr<T> node) {
-    node->next = node->next->next;
-    node->data = node->next->data;
-    
+bool deleteNode(std::shared_ptr<T> node) {
+    if (!node || !node->next ) {
+        return false;
+    }
+    std::shared_ptr<T> next = node->next;
+    node->next = next->next;
+    node->data = next->data;
+    return true;
 }
 
 
