@@ -44,6 +44,11 @@ namespace util {
         
         // Utility funnctions
         std::list< TreeNode<T>* > getNodesDFS(void);
+        std::list< TreeNode<T>* > getNodesDFS(std::string mode);
+        
+        void getNodesDFSPreorder( TreeNode<T>* root, std::list< TreeNode<T>* > &s);
+        void getNodesDFSInorder( TreeNode<T>* root, std::list< TreeNode<T>* > &s);
+        void getNodesDFSPostorder( TreeNode<T>* root, std::list< TreeNode<T>* > &s);
         std::list< TreeNode<T>* > getNodesBFS(void);
         //    void setStatus(Status s); // set status for all nodes
         void displayDFS(void);
@@ -85,14 +90,55 @@ namespace util {
                 s.push(k->right);
                 k->right->st = Visiting;
             }
+            
+            treeList.push_back(k);
+            
             if (k->left != NULL && k->left->st != Visited) {
                 s.push(k->left);
                 k->left->st = Visiting;
             }
             k->st = Visited;
-            treeList.push_back(k);
+//            treeList.push_back(k);
         }
         return treeList;
+    }
+    
+    template <class T> std::list< TreeNode<T>* > TreeNode<T>::getNodesDFS(std::string mode){
+        std::list< TreeNode<T>* > treeList;
+        if (mode.compare("preorder") == 0) {
+            getNodesDFSPreorder(this, treeList);
+        }else if (mode.compare("inorder") == 0){
+            getNodesDFSInorder(this, treeList);
+        }else if (mode.compare("postorder") == 0){
+            getNodesDFSPostorder(this, treeList);
+        }else{
+            throw("ONLY preorder, inorder and postorder is defined for DFS traverse");
+        }
+        return treeList;
+    }
+    
+    template<class T> void TreeNode<T>::getNodesDFSPreorder(TreeNode<T> *root, std::list< TreeNode<T>* > &s){
+        if (root != NULL) {
+            s.push_back(root);
+            getNodesDFSPreorder(root->left, s);
+            getNodesDFSPreorder(root->right, s);
+        }
+    }
+    
+    template<class T> void TreeNode<T>::getNodesDFSInorder(TreeNode<T> *root, std::list< TreeNode<T>* > &s){
+        if (root != NULL) {
+            getNodesDFSInorder(root->left, s);
+            s.push_back(root);
+            getNodesDFSInorder(root->right, s);
+        }
+    }
+    
+    template<class T> void TreeNode<T>::getNodesDFSPostorder(TreeNode<T> *root, std::list< TreeNode<T>* > &s){
+        if (root != NULL) {
+            getNodesDFSPostorder(root->left, s);
+            getNodesDFSPostorder(root->right, s);
+            s.push_back(root);
+        }
     }
     
     template <class T> std::list< TreeNode<T>* > TreeNode<T>::getNodesBFS(){
@@ -140,16 +186,27 @@ namespace util {
 #endif
 
 // Testing main function
-//int main(){
-////    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-//    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-//    TreeNode<int> *root = new TreeNode<int>;
-//    root = root->createMinimalBST(arr, 0, 10);
-//    std::cout << "Display DFS" << std:: endl;
-//    root->displayDFS();
-//    std::cout << std::endl;
-//    std::cout << "display BFS" << std::endl;
-//    root->displayBFS();
-//    delete root;
-//    return 0;
-//}
+int main(){
+//    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    int arr[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    util::TreeNode<int> *root = new util::TreeNode<int>;
+    root = root->createMinimalBST(arr, 0, 9);
+    std::cout << "Display DFS" << std:: endl;
+    
+    std::list< util::TreeNode<int>* > s;
+    root->getNodesDFSPostorder(root, s);
+    
+    auto iter = s.cbegin();
+    for (; iter != s.cend(); iter++) {
+        std::cout << (*iter)->data << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << std::endl;
+    root->displayDFS();
+    std::cout << std::endl;
+    std::cout << "display BFS" << std::endl;
+    root->displayBFS();
+    delete root;
+    return 0;
+}
