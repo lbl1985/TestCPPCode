@@ -194,7 +194,7 @@ int main(){
     std::cout << "Display DFS" << std:: endl;
     
     std::list< util::TreeNode<int>* > s;
-    root->getNodesDFSPostorder(root, s);
+    root->getNodesDFSInorder(root, s);
     
     auto iter = s.cbegin();
     for (; iter != s.cend(); iter++) {
