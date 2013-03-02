@@ -122,16 +122,17 @@ void Graph::addEdge(int x, int y){
 bool Graph::DFS(int x, int required){
     // Here the x is 1 based
     // The inner data A is 0 based
+    if (x == required) {
+        return true;
+    }
+    
     stack s;
     bool *visited = new bool[n+1];
     for (int i = 0; i <= n; i++) {
         visited[i] = false;
     }
     s.push(x);
-    visited[x] = true;
-    if (x == required) {
-        return true;
-    }
+
     while (!s.isEmpty()) {
         int k = s.pop();
         if (k == required) {
@@ -140,9 +141,9 @@ bool Graph::DFS(int x, int required){
         for (int i = n; i > 0; i--) {
             if (!visited[i] && isConnected(k, i)) {
                 s.push(i);
-                visited[i] = true;
             }
         }
+        visited[x] = true;
     }
     delete [] visited;
     return false;
@@ -153,7 +154,10 @@ int main(){
     g.addEdge(1, 2); g.addEdge(1, 3); g.addEdge(1, 4);
     g.addEdge(2, 5); g.addEdge(2, 6); g.addEdge(4, 7);
     g.addEdge(4, 8);
-    std::cout << "1 and 4 connected: " << g.DFS(6, 8) << std::endl;
+    
+    int x = 7;
+    int y = 8;
+    std::cout << x << " and " << y << " connected: " << g.DFS(x, y) << std::endl;
     
     
     
