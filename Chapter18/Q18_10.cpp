@@ -74,8 +74,6 @@ std::vector<std::string> transform(std::string str1, std::string str2, hashset d
     }
 }
 
-
-
 hashset buildDict(std::vector<std::string> vs){
     hashset tmpDict;
     for (auto &x : vs){
@@ -100,7 +98,4 @@ int main(){
         s.pop();
     }
     std::cout << std::endl;
-    
-    
-
 }
