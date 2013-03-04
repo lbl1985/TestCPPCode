@@ -11,9 +11,10 @@
 #include <algorithm>
 
 class HtWt {
+public:
     int h;
     int w;
-public:
+
     HtWt(int _h, int _w):h(_h), w(_w){}
     bool operator < (HtWt const &other) const;
     bool isBefore(HtWt const other) const;
@@ -103,6 +104,7 @@ int main(){
     initial(items);
     
     std::vector<HtWt> res = longestSequence(items);
+//    std::vector<HtWt> res = longest(items);
     
     std::for_each(res.cbegin(), res.cend(), [](HtWt const &item){
         item.print();
