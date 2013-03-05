@@ -105,4 +105,13 @@ int main(){
     
     std::cout << std::endl;
     
+//    int a = 3; int b = 5;
+//    int m = 0;
+//    while (a & 1) {
+//        m += b;
+//        a >>= 1;
+//        b <<= 1;
+//    }
+//    std::cout << m << std::endl;
+//    
 }
